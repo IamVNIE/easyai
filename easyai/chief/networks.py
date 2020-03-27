@@ -9,7 +9,7 @@ class NetworkInit(object):
     """Base class for parameter Network initializers.
 
     The :class:`NetworkInit` class represents a network initializer used
-    to initialize network/model parameters for numerous medical ai networks. It should be
+    to initialize network/model parameters for numerous ai networks. It should be
     subclassed when implementing new types of network initializers.
     """
     def __call__(self, inputSize, OutputSize):
@@ -40,8 +40,8 @@ class NetworkInit(object):
         return self.__class__.__name__
 
 
-class tinyMedNet(NetworkInit):
-    """tinyMedNet is a classification network that consumes very less resources and can be trained even on CPUs
+class tinyNet(NetworkInit):
+    """tinyNet is a classification network that consumes very less resources and can be trained even on CPUs
     """
     def call(self, inputSize, OutputSize):
         model = Sequential([
@@ -61,7 +61,7 @@ class tinyMedNet(NetworkInit):
 
 def get(networkInitialization):
     if networkInitialization.__class__.__name__ == 'str':
-        if networkInitialization in ['tinyMedNet', 'tiny_Medical_Network']:
+        if networkInitialization in ['tinyNet', 'tiny_Network']:
             return tinyMedNet()
         raise ValueError('Unknown network Initialization name: {}.'.format(networkInitialization))
 
@@ -73,6 +73,6 @@ def get(networkInitialization):
 
 
 if __name__ == "__main__":
-    v=get('tinyMedNet')
+    v=get('tinyNet')
     m = v((32,32,3),10)
     m.summary()
