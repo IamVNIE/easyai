@@ -62,7 +62,7 @@ def load_model_and_weights(modelName, summary = False):
 	model.load_weights(modelName+'_wgts.h5')
 	return model
 
-def modelManager(modelName,x_train, OUTPUT_CLASSES, RETRAIN_MODEL, AI_NAME= 'tinyMedNet'):
+def modelManager(modelName,x_train, OUTPUT_CLASSES, RETRAIN_MODEL, AI_NAME= 'tinyNet'):
 	if RETRAIN_MODEL== True:
 		if check_model_exists(modelName):
 			model = load_model_and_weights(modelName = modelName)
